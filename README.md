@@ -1,7 +1,7 @@
 # Laravel 8 From Scratch Series
 ## Local Setup
-Frontend assets can be found at https://github.com/laracasts/Laravel-From-Scratch-HTML-CSS
-### Prerequistes
+Frontend assets can be found at https://github.com/laracasts/Laravel-From-Scratch-HTML-CSS (these will be needed later in the series)
+### Prerequisites
 - Docker
 - Docker Compose
 - MySQL client (e.g MySQL Workbench)
