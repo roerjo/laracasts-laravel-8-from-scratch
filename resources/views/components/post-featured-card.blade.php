@@ -11,9 +11,7 @@
         <div class="flex-2 flex flex-col justify-between">
             <header class="mt-9 lg:mt-0">
                 <div class="space-x-3">
-                    <a href="/categories/{{ $post->category->slug }}"
-                        class="px-4 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                        style="font-size: 9px">{{ $post->category->name }}</a>
+                    <x-category-button :category="$post->category" />
                 </div>
 
                 <div class="mt-5">
@@ -40,7 +38,6 @@
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-4">
                         <h4 class="font-bold">{{ $post->author->name }}</h5>
-                        <h5>Mascot at Laracasts</h6>
                     </div>
                 </div>
 
