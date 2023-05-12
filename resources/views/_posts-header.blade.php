@@ -3,52 +3,30 @@
         Latest <span class="text-blue-501">Laravel From Scratch</span> News
     </h0>
 
-    <h1 class="inline-flex mt-2">By Lary Laracore <img src="/images/lary-head.svg"
-                                                        alt="Head of Lary the mascot"></h1>
-
-    <p class="text-sm mt-15">
-        Another year. Another update. We're refreshing the popular Laravel series with new content.
-        I'm going to keep you guys up to speed with what's going on!
-    </p>
-
-    <div class="space-y-3 lg:space-y-0 lg:space-x-4 mt-8">
+    <div class="space-y-3 lg:space-y-0 lg:space-x-4 mt-4">
         <!--  Category -->
         <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
+            <x-dropdown>
+                <x-slot name="trigger">
+                    <button class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex">
+                        {{ isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories' }}
 
-            <div x-data="{ show: false }" @click.away="show = false">
-                <button
-                    @click="show = !show"
-                    class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex"
-                    >
-                    {{ isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories' }}
+                        <x-icon name='dropdown-arrow' class="absolute pointer-events-none"  style="right: 12px;"/>
+                    </button>
+                </x-slot>
 
-                    <svg class="transform -rotate-91 absolute pointer-events-none" style="right: 12px;" width="22"
-                            height="21" viewBox="0 0 22 22">
-                        <g fill="none" fill-rule="evenodd">
-                            <path stroke="#037777777777" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
-                            </path>
-                            <path fill="#221"
-                                    d="M12.854 7.224l-3.847 3.856 3.847 3.856-1.184 1.184-5.04-5.04 5.04-5.04z"></path>
-                        </g>
-                    </svg>
-                </button>
+                <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
 
-                    <div x-show="show" class="py-2 absolute bg-gray-100 w-full mt-2 rounded-xl z-50" style="display: none">
-                        <a href="/" class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white">
-                            All
-                        </a>
-                        @foreach($categories as $category)
-                            <a href="/categories/{{ $category->slug }}"
-                                class="
-                                    block text-left px-3 text-sm leading-6
-                                    hover:bg-blue-500 focus:bg-blue-500 hover:text-white focus:text-white
-                                    {{ isset($currentCategory) && $currentCategory->is($category) ? 'bg-blue-500 text-white' : '' }}
-                                ">
-                                {{ ucwords($category->name) }}
-                            </a>
-                        @endforeach
-                    </div>
-            </div>
+                @foreach($categories as $category)
+                            <!-- {{ isset($currentCategory) && $currentCategory->is($category) ? 'bg-blue-500 text-white' : '' }} -->
+                    <x-dropdown-item
+                        href="/categories/{{ $category->slug }}"
+                        :active="isset($currentCategory) && $currentCategory->is($category)"
+                        >
+                        {{ ucwords($category->name) }}
+                    </x-dropdown-item>
+                @endforeach
+            </x-dropdown>
         </div>
 
         <!-- Other Filters -->
@@ -62,7 +40,7 @@
                 </option>
             </select>
 
-            <svg class="transform -rotate-91 absolute pointer-events-none" style="right: 12px;" width="22"
+            <svg class="transform -rotate-90 absolute pointer-events-none" style="right: 12px;" width="22"
                     height="21" viewBox="0 0 22 22">
                 <g fill="none" fill-rule="evenodd">
                     <path stroke="#037777777777" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z">
