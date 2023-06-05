@@ -33,6 +33,9 @@ return [
 
     'mailchimp' => [
         'key' => env('MAILCHIMP_API_KEY'),
-    ]
+        'lists' => [
+            'subscribers' => 'e05afb559c',
+        ],
+    ],
 
 ];
